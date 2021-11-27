@@ -1,73 +1,63 @@
-import { useState } from 'react';
-// import { useSelector, useDispatch } from 'react-redux';
-// import { connect } from 'react-redux';
-// import { getTickers } from '../Store/ActionTickers';
-// import { tickersSelector } from '../Store/SelectorTickers';
-import { Form, Col, Row, Container } from 'react-bootstrap';
-// import { io } from 'socket.io-client';
+import React, { useState, useEffect} from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { getTickers, getTickersData } from '../Store/ActionTickers';
+import { tickersSelector } from '../Store/SelectorTickers';
+import {  Container } from 'react-bootstrap';
 
-export default function Tickers () {
-    // const socket = io('http://localhost:4000');
-    // socket.on('tickers');
+
+const Tickers = ({tickers}) => {
     
-    const [tickers] = useState([]);
+  const [persentVisible, setPecentVisible] = useState(true);
 
-    const handleSubmit = e => {
-        e.preventDefault();
-        
-    };
-
-    const handleChange = e => {
-
-    };
-    // useEffect(() => {
-    //     getTickersData();
-    // }, [tickers]);
+  const onTogglePercent = () => {
+    setPecentVisible(!persentVisible);
+  };
+  
+  const handleKeyDown = () => {
+    setPecentVisible(!persentVisible);
+  };
+  
+  useEffect(() => {
+    getTickersData();
+  }, [tickers]);
 
     return (
          <Container>
             <h2>Tickers</h2>
-            <Form onSubmit={handleSubmit}>
-        <Form.Group>
-          <h3>Find Tickers</h3>
-          <Form.Label>Tickers</Form.Label>
-          <Row>
-            <Col>
-              <Form.Control
-                type="text"
-                name="name"
-                pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-                title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
-                required
-                value={tickers}
-                onChange={handleChange}
-                placeholed="Enter Tickers"
-              />
-            </Col>
-                    </Row>
-          </Form.Group>
-        </Form>
+           
             <ul>
-                {tickers.map(({ ticker, price, change_percent, dividend }) => (
+          {tickers.map(({ ticker, change_percent, dividend }) => {
+            return (
                     <li key={ticker} >
                         <span>{ticker}</span>
-                        <span>{price}</span>
-                        <span>{change_percent}</span>
-                        <span>{dividend}</span>
-                       
+                <div
+                  onClick={onTogglePercent}
+                  onKeyDown={handleKeyDown}
+                >{persentVisible ? `${change_percent}%` : dividend}</div>  
                     </li>
-                ))}
+                  )         
+                })}
             </ul>
         </Container>
     );
 };
 
-// const mapState = state => ({
-//     tickers: tickersSelector(state)
-// });
+Tickers.propTypes = {
+  tickers: PropTypes.arrayOf(PropTypes.shape()),
+  getTickersData: PropTypes.func.isRequired,
+};
 
-// const mapDispatch = {
-//     getTickersData: getTickers,
+// Tickers.defaultProps = {
+//   tickers: [],
 // };
 
-// export default connect(mapState, mapDispatch)(Tickers);
+const mapStateToProps = state => ({
+    tickers: tickersSelector(state),
+});
+
+const mapDispatchToProps = {
+    getTickersData: getTickers,
+};
+
+export default connect( mapStateToProps, mapDispatchToProps)(Tickers);
