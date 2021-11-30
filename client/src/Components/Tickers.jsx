@@ -52,12 +52,12 @@ Tickers.propTypes = {
 //   tickers: [],
 // };
 
-const mapStateToProps = state => ({
+const mapState = state => ({
     tickers: tickersSelector(state),
 });
 
-const mapDispatchToProps = {
+const mapDispatch = {
     getTickersData: getTickers,
 };
 
-export default connect( mapStateToProps, mapDispatchToProps)(Tickers);
+export default connect( mapState, mapDispatch)(Tickers);

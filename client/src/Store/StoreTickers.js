@@ -5,7 +5,7 @@ import tickersReducer from './ReducerTickers';
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const reduser = combineReducers({
-    ticker: tickersReducer,
+    tickers: tickersReducer,
 });
 
 const store = createStore(reduser, composeEnhancers(applyMiddleware(thunk)));

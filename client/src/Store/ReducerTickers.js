@@ -1,4 +1,7 @@
+// import { combineReducers } from 'redux';
+// import { createReducer } from '@reduxjs/toolkit';
 import { GET_TICKERS_DATA } from './ActionTickers';
+
 
 const initialState = {
   tickersData: [],
