@@ -1,16 +1,22 @@
-import React from 'react';
-import { Provider } from 'react-redux';
-import Tickers from './Components/Tickers.jsx';
-import store from './Store/StoreTickers';
+import Filter from './Components/Filter/FilterTickers.jsx';
+import TickersList from './Components/Tickers/Tickers.jsx';
+import TickersForm from './Components/Form/TickersForm.jsx'
+import {Title} from './App.styled';
+
 
 // import logo from './logo.svg';
-import './App.css';
+import './App.styled.jsx';
 
-const App = () => (
-  <Provider store={store}>
-    <Tickers />
-</Provider>
-);
+export default function App() {
+  return (
+    <div>
+      <Title>Обзор популярных акций в Google</Title>
+      <Filter />
+      <TickersList />
+      <TickersForm />
+    </div>
+  );
+}
 
 
-export default App;
+
