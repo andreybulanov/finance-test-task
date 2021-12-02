@@ -1,17 +1,37 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
-import * as tickerAPI from './EntranceTickers';
+import { socket } from './EntranceTickers';
+import * as operationTickers from './ActionTickers';
 
-export const fetchTickersAction = createAsyncThunk('tickers/fetchTickers', async () => {
-    const tickers = await tickerAPI.fetchTickers();
-    return tickers;
-});
+export const getTickers = () => async dispatch => {
+    dispatch(operationTickers.getTickersRequest());
+    try {
+        socket.on('ticker', function (response) {
+            dispatch(operationTickers.getTickersSuccess(response));
+        });
+    } catch (err) {
+        dispatch(operationTickers.getTickersError(err.massege));
+    }
+}
 
-export const addTickersAction = createAsyncThunk('tickers/addTickers', async ticker => {
-    const data = await tickerAPI.addTickers(ticker);
-    return data;
-});
+export const deleteTickers = ticker => async dispatch => {
+    dispatch(operationTickers.deleteTickersRequest());
+    try {
+        socket.emit('deleteTickers', ticker);
+        socket.on('tickersToRecomend', function (response) {
+            dispatch(operationTickers.deleteTickersSuccess(response));
+        })
+    } catch (error) {
+        dispatch(operationTickers.deleteTickersError(error.massege));
+    }
+};
 
-export const deleteTickersAction = createAsyncThunk('tickers/deleteTickers', async id => {
-    await tickerAPI.deleteTickers(id);
-    return id;
-});
+export const addTickers = ticker => async dispatch => {
+    dispatch(operationTickers.addTickersRequest());
+    try {
+        socket.emit('addTickers', ticker);
+        socket.on('tickersToRecomend', function (response) {
+            dispatch(operationTickers.addTickersSuccess(response));
+        })
+    } catch (error) {
+        dispatch(operationTickers.addTickersError(error.massege));
+    }
+};

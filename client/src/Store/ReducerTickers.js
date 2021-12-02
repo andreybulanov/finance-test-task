@@ -1,45 +1,16 @@
-import { combineReducers } from 'redux';
 import { createReducer } from '@reduxjs/toolkit';
-import { changeFilter } from './ActionTickers';
-import { fetchTickersAction, addTickersAction, deleteTickersAction } from './OperationTickers';
+import { tickerFilter, getTickersSuccess, deleteTickersSuccess, addTickersSuccess } from './ActionTickers';
 
-const entities = createReducer([], {
-    [fetchTickersAction.fulfilled]: (_state, action) => action.payload,
-    [addTickersAction.fulfilled]: (state, { payload }) => {
-        if (state.find(ticker => ticker.toLowerCase() === payload.toLowerCase())) {
-            alert(`${payload} is alreeady in quotes`);
-            return state;
-        } return [payload, ...state];
-    },
-    [deleteTickersAction.fulfilled]: (state, { payload }) => state.filter(({ id }) => id !== payload),
+export const tickersReducer = createReducer([], {
+    [getTickersSuccess]: (state, { payload }) => [...state, payload],
 });
 
-const filter = createReducer('', {
-    [changeFilter]: (_state, { payload }) => payload,
+export const filterReducer = createReducer('', {
+    [tickerFilter]: (_, { payload }) => payload,
 });
 
-export default combineReducers({ entities, filter });
+export const tickersToRecomendRedusers = createReducer([], {
+    [addTickersSuccess]: (_, {payload}) => payload,
+    [deleteTickersSuccess]: (_, { payload }) => payload,
+});
 
-
-
-// .......РАБОТАЛО...........
-// import { GET_TICKERS_DATA } from './ActionTickers';
-
-
-// const initialState = {
-//   tickersData: [],
-// };
-
-// const tickersReducer = (state = initialState, action) => {
-//   switch (action.type) {
-//     case GET_TICKERS_DATA:
-//       return {
-//         ...state,
-//         tickersData: action.payload.tickersData,
-//       };
-//     default:
-//       return state;
-//   }
-// };
-
-// export default tickersReducer;

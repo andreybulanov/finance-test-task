@@ -1,22 +1,19 @@
 import { createAction } from '@reduxjs/toolkit';
 
-export const changeFilter = createAction('tickers/changeFilter');
+export const tickerFilter = createAction('tickers/changeFilter');
 
-// .......РАБОТАЛО, НО НЕКОТОРЫЕ ФУНКЦИИ НЕ ПОНИМАЮ, РЕШЕНИЕ НАЙДЕНО В ИНЕТЕ..........
+export const getTickersRequest = createAction('tickers/getTickersRequest');
+export const getTickersSuccess = createAction('tickers/getTickersSuccess');
+export const getTickersError = createAction('tickers/getTickersError');
 
-// import { socket } from './EntranceTickers';0
+export const deleteTickersRequest = createAction('tickers/deleteTickersRequest');
+export const deleteTickersSuccess = createAction('tickers/deleteTickersSuccess');
+export const deleteTickersError = createAction('tickers/deleteTickersError');
 
-// export const GET_TICKERS_DATA = 'GET_TICKERS_DATA';
+export const addTickersRequest = createAction('tickers/addTickersRequest');
+export const addTickersSuccess = createAction('tickers/addTickersSuccess');
+export const addTickersError = createAction('tickers/addTickersError');
 
-// export const getTickersData = tickersData => ({
-//     type: GET_TICKERS_DATA,
-//     payload: {
-//         tickersData,
-//     }
-// });
 
-// export const getTickers = () =>
-// function (dispatch) {
-//     socket.on('ticker', response => dispatch(getTickersData(response)));
-// };
+
 

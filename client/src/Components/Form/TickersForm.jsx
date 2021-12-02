@@ -8,7 +8,7 @@ import {Button, Input, Label, Form} from './TickersForm.styled';
 export function TickersForm() {
     const dispatch = useDispatch();
     const onSubmit = (ticker) =>
-        dispatch(tickersOperation.addTickersAction({ ticker }));
+        dispatch(tickersOperation.addTickers({ ticker }));
     
     const [ticker, setTickert] = useState('');
 
