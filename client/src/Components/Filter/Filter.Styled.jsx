@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 
 export const Label = styled.label`
   display: block;
-  width: 400px;
+  width: 600px;
   margin: 50px auto 0;
   font-family: 'Roboto', sans-serif;
   color: black;

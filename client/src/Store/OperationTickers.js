@@ -1,37 +1,37 @@
 import { socket } from './EntranceTickers';
-import * as operationTickers from './ActionTickers';
+import * as actionTickers from './ActionTickers';
 
 export const getTickers = () => async dispatch => {
-    dispatch(operationTickers.getTickersRequest());
+    dispatch(actionTickers.getTickersRequest());
     try {
         socket.on('ticker', function (response) {
-            dispatch(operationTickers.getTickersSuccess(response));
+            dispatch(actionTickers.getTickersSuccess(response));
         });
     } catch (err) {
-        dispatch(operationTickers.getTickersError(err.massege));
+        dispatch(actionTickers.getTickersError(err.massege));
     }
 }
 
 export const deleteTickers = ticker => async dispatch => {
-    dispatch(operationTickers.deleteTickersRequest());
+    dispatch(actionTickers.deleteTickersRequest());
     try {
         socket.emit('deleteTickers', ticker);
-        socket.on('tickersToRecomend', function (response) {
-            dispatch(operationTickers.deleteTickersSuccess(response));
+        socket.on('tickersToRecommend', function (response) {
+            dispatch(actionTickers.deleteTickersSuccess(response));
         })
     } catch (error) {
-        dispatch(operationTickers.deleteTickersError(error.massege));
+        dispatch(actionTickers.deleteTickersError(error.massege));
     }
 };
 
 export const addTickers = ticker => async dispatch => {
-    dispatch(operationTickers.addTickersRequest());
+    dispatch(actionTickers.addTickersRequest());
     try {
         socket.emit('addTickers', ticker);
-        socket.on('tickersToRecomend', function (response) {
-            dispatch(operationTickers.addTickersSuccess(response));
+        socket.on('tickersToRecommend', function (response) {
+            dispatch(actionTickers.addTickersSuccess(response));
         })
     } catch (error) {
-        dispatch(operationTickers.addTickersError(error.massege));
+        dispatch(actionTickers.addTickersError(error.massege));
     }
 };

@@ -9,7 +9,7 @@ export const filterReducer = createReducer('', {
     [tickerFilter]: (_, { payload }) => payload,
 });
 
-export const tickersToRecomendRedusers = createReducer([], {
+export const tickersToRecommendRedusers = createReducer([], {
     [addTickersSuccess]: (_, {payload}) => payload,
     [deleteTickersSuccess]: (_, { payload }) => payload,
 });

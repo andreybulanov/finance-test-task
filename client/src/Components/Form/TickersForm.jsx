@@ -10,7 +10,7 @@ export function TickersForm() {
     const onSubmit = (ticker) =>
         dispatch(tickersOperation.addTickers({ ticker }));
     
-    const [ticker, setTickert] = useState('');
+    const [ticker, setTicker] = useState('');
 
     const tickerId = uuidv4();
 
@@ -18,7 +18,7 @@ export function TickersForm() {
         const { ticker, value } = event.target;
         switch (ticker) {
             case 'ticker':
-                setTickert(value);
+                setTicker(value);
                 break;
             default: return;
         }
@@ -27,23 +27,14 @@ export function TickersForm() {
     const handleSubmit = event => {
         event.preventDefault();
         onSubmit(ticker);
-        setTickert('');
+        setTicker('');
     };
 
     return (
         <Form onSubmit={handleSubmit}>
             <Label >
                 Акция
-                <Input
-                    type="text"
-                    name="ticker"
-                    pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-                    title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
-                    required
-                    id={tickerId}
-                    value={ticker}
-                    onChange={handleChange}
-                />
+                <Input type="text" id={tickerId}  onChange={handleChange}/>               
             </Label>
             <Button type="submit">Добавить акцию</Button>
         </Form>

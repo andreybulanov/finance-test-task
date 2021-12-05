@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
 export const Form = styled.form`
-  max-width: 400px;
+  max-width: 600px;
   padding: 40px 50px;
   margin: 50px auto 0;
   background-color: gainsboro;

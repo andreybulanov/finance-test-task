@@ -9,5 +9,5 @@ export const tickersToRecomendSelector = state => state.tickersToRecomend;
 
 export const getFilteredTickers = createSelector([getTickers, getFilter], (tickers, filter) => {
     const normolizedFilter = filter.toLowerCase();
-    return tickers.filter(ticker => ticker.toLowerCase().includes(normolizedFilter));
+    return tickers.filter(({ticker}) => ticker.toLowerCase().includes(normolizedFilter));
 });

@@ -9,12 +9,12 @@ const Filter = () => {
     const dispatch = useDispatch();
 
     const onChange = event => dispatch(tickerFilter(event.target.value));
-    const onBlur = () => dispatch(tickerFilter(''));
+    // const onBlur = () => dispatch(tickerFilter(''));
 
     return (
         <Label>
             Найдите акции по имени
-            <Input type="text" value={value} onChange={onChange} onBlur={onBlur} />
+            <Input type="text" value={value} onChange={onChange}  />
         </Label>
     );
 };
