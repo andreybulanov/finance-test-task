@@ -10,7 +10,7 @@ import { titleColor } from './TickersColor';
 const TickersList = () => {
   const tickers = useSelector(getFilteredTickers);
   const dispatch = useDispatch();
-  const handleDelete = event => dispatch(event.target.id);
+  const handleDelete = ticker => dispatch(tickersOperation.deleteTickers(ticker));
 
   useEffect(() => {
     dispatch(tickersOperation.getTickers());

@@ -16,6 +16,8 @@ const tickers = [
   'TSLA', // Tesla
 ];
 
+
+
 function randomValue(min = 0, max = 1, precision = 0) {
   const random = Math.random() * (max - min) + min;
   return random.toFixed(precision);
@@ -75,6 +77,8 @@ socketServer.on('connection', (socket) => {
     trackTickers(socket);
   });
 });
+
+
 
 server.listen(PORT, () => {
   console.log(`Streaming service is running on http://localhost:${PORT}`);
