@@ -35,3 +35,9 @@ export const addTickers = ticker => async dispatch => {
         dispatch(actionTickers.addTickersError(error.massege));
     }
 };
+
+export const getRecommendedTicker = () => async dispatch => {
+    socket.on('tickersToRecommend', function (response) {
+        dispatch(actionTickers.getTickersSuccess(response));
+    });
+};

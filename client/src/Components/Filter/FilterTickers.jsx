@@ -9,7 +9,6 @@ const Filter = () => {
     const dispatch = useDispatch();
 
     const onChange = event => dispatch(tickerFilter(event.target.value));
-    // const onBlur = () => dispatch(tickerFilter(''));
 
     return (
         <Label>

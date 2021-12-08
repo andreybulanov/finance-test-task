@@ -1,6 +1,6 @@
 import Filter from './Components/Filter/FilterTickers.jsx';
 import TickersList from './Components/Tickers/Tickers.jsx';
-import TickersForm from './Components/Form/TickersForm.jsx'
+// import TickersForm from './Components/Form/TickersForm.jsx';
 import {Title} from './App.styled';
 
 
@@ -13,7 +13,7 @@ export default function App() {
       <Title>Обзор популярных акций в Google</Title>
       <Filter />
       <TickersList />
-      <TickersForm />
+      {/* <TickersForm /> */}
     </div>
   );
 }

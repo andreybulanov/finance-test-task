@@ -34,7 +34,7 @@ export function TickersForm() {
         <Form onSubmit={handleSubmit}>
             <Label >
                 Акция
-                <Input type="text" id={tickerId}  onChange={handleChange}/>               
+                <Input type="text" id={tickerId} onChange={handleChange}/>               
             </Label>
             <Button type="submit">Добавить акцию</Button>
         </Form>

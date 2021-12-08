@@ -10,7 +10,8 @@ import { titleColor } from './TickersColor';
 const TickersList = () => {
   const tickers = useSelector(getFilteredTickers);
   const dispatch = useDispatch();
-  const handleDelete = ticker => dispatch(tickersOperation.deleteTickers(ticker));
+   
+  // const handleDelete = id => dispatch(tickersOperation.deleteTickers(id));
 
   useEffect(() => {
     dispatch(tickersOperation.getTickers());
@@ -37,7 +38,7 @@ const TickersList = () => {
               </div>
             
             </div>
-            <button className={s.Button} onClick={handleDelete} type="button" id={ticker}>Удалить?</button>
+            {/* <button className={s.Button} onClick={handleDelete} type="button" id={ticker}>Удалить?</button> */}
           </li>
         );
       })}
